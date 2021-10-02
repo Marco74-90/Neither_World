@@ -325,15 +325,42 @@ play_game()
 
 # xp leveling 
 
-lvl = 1
-xp = 0
-lvlNext = 25
 
-while lvl >= lvlNext:
-    lvl += 1
-    xp = xp - lvlNext
-    lvlNext = round(lvlNext * 1.5)
-print('lvl:',lvl)
-print('To next level: {}%'.format(int((xp / lvlNext) * 100)))
-print('Next:', lvlNext)
+print('lvl:',lvl) 
+print('Next:', lvlNext) # next level
+print('To next level: {}%'.format(int((xp / lvlNext) * 100))) # prints percentage to next level
 
+
+player = {
+    'lvl': 1,
+    'xp': 0,
+    'lvlNext': 25
+}
+
+stats = {
+    'Str': 0,
+    'Def': 0,
+    'Dex': 0,
+    'Int': 0
+}
+
+def level(player, stats):
+    nStr, nDef, nDex, nInt = 0, 0, 0, 0
+    while player['xp'] >= player['lvlNext']:
+        player['lvl'] += 1
+        player['xp'] = player['xp'] - player['lvlNext']
+        player['lvlNext'] = round(player['lvlNext'] * 1.5)
+        nStr += 1
+        nDef += 1
+        nDex += 1
+        nInt += 1
+
+    print('level:', player['lvl']) # current level
+    print('STR {} +{} DEF {} +{} DEX {} +{} INT {} +{}'.format(stats['Str'], nStr,
+                                                               stats['Def'], nDef,
+                                                               stats['Dex'], nDex,
+                                                               stats['Int'], nInt))
+    stats['Str'] += nStr
+    stats['Def'] += nDef
+    stats['Dex'] += nDex
+    stats['Int'] += nInt
