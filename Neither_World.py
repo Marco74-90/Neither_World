@@ -1,30 +1,49 @@
 import time
-
 import random
+
 # player info
 player = {
+    'name': 'Hero',
     'lvl': 1,
     'xp': 0,
-    'lvlNext': 25
+    'lvlNext': 25,
+    'stats': {
+        'Str': 1,
+        'Def': 1,
+        'Dex': 1,
+        'Int': 1,
+        'maxHp': 50, # Max Hp should increase with level
+        "Atk": [7, 15], #Attack should also increase with level
+    }
 }
 
-stats = {
-    'Str': 0,
-    'Def': 0,
-    'Dex': 0,
-    'Int': 0
-}
+
 
 hero_path = ["Mage", "Wanderer", "Spirit Walker"]
 
 # Enemy info
 
-enemies = ["Dragon", "Golem", "Giant Serpent", "Werewolf"]
-enemy = random.choice(enemies)
+enemies = ["Imp", "Undead", "Mutant Wolf", "Corrupt Elf", "Enemy Soldier"]
+randomEnemy = random.choice(enemies)
+
+enemy = {
+    'name': randomEnemy,
+    'lvl': 1,
+    'xp': 0,
+    'lvlNext': 25,
+    'stats': {
+        'Str': 1,
+        'Def': 1,
+        'Dex': 1,
+        'Int': 1,
+        'Hp': 50, # Add more reasonable Hp Max Hp should increase with level
+        "Atk": [5, 12], #Attack should also increase with level
+    }
+}
 
 #leveling up 
 
-def level(player, stats):
+def level(player):
     nStr, nDef, nDex, nInt = 0, 0, 0, 0
     while player['xp'] >= player['lvlNext']:
         player['lvl'] += 1
@@ -36,16 +55,16 @@ def level(player, stats):
         nInt += 1
 
     print('level:', player['lvl']) # current level
-    print('STR {} +{} DEF {} +{} DEX {} +{} INT {} +{}'.format(stats['Str'], nStr,
-                                                               stats['Def'], nDef,
-                                                               stats['Dex'], nDex,
-                                                               stats['Int'], nInt))
+    print('STR {} +{} DEF {} +{} DEX {} +{} INT {} +{}'.format(player['Str'], nStr,
+                                                               player['Def'], nDef,
+                                                               player['Dex'], nDex,
+                                                               player['Int'], nInt))
     print('To next level: {}%'.format(int(player['xp'] / player['lvlNext']) * 100)) # prints percentage to next level
     print('Next:', player['lvlNext']) 
-    stats['Str'] += nStr
-    stats['Def'] += nDef
-    stats['Dex'] += nDex
-    stats['Int'] += nInt
+    player['Str'] += nStr
+    player['Def'] += nDef
+    player['Dex'] += nDex
+    player['Int'] += nInt
 
 # Input response function 
 
@@ -67,7 +86,7 @@ def play_game():
     companion = []
     items = []
     intro()
-    ruskett_valley(items)
+    ruskett_valley(items, player)
 
 
 def print_pause(message):
@@ -272,6 +291,9 @@ def fourth_cave(items):
         return response
 
 
+#Fight
+
+# def takeDmg(attacker, defender):
 
 
 
