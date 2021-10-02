@@ -325,12 +325,6 @@ play_game()
 
 # xp leveling 
 
-
-print('lvl:',lvl) 
-print('Next:', lvlNext) # next level
-print('To next level: {}%'.format(int((xp / lvlNext) * 100))) # prints percentage to next level
-
-
 player = {
     'lvl': 1,
     'xp': 0,
@@ -360,6 +354,8 @@ def level(player, stats):
                                                                stats['Def'], nDef,
                                                                stats['Dex'], nDex,
                                                                stats['Int'], nInt))
+    print('To next level: {}%'.format(int(player['xp'] / player['lvlNext']) * 100)) # prints percentage to next level
+    print('Next:', player['lvlNext']) 
     stats['Str'] += nStr
     stats['Def'] += nDef
     stats['Dex'] += nDex
