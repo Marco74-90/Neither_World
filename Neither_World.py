@@ -1,11 +1,53 @@
 import time
 
 import random
+# player info
+player = {
+    'lvl': 1,
+    'xp': 0,
+    'lvlNext': 25
+}
+
+stats = {
+    'Str': 0,
+    'Def': 0,
+    'Dex': 0,
+    'Int': 0
+}
 
 hero_path = ["Mage", "Wanderer", "Spirit Walker"]
+
+# Enemy info
+
 enemies = ["Dragon", "Golem", "Giant Serpent", "Werewolf"]
 enemy = random.choice(enemies)
 
+#leveling up 
+
+def level(player, stats):
+    nStr, nDef, nDex, nInt = 0, 0, 0, 0
+    while player['xp'] >= player['lvlNext']:
+        player['lvl'] += 1
+        player['xp'] = player['xp'] - player['lvlNext']
+        player['lvlNext'] = round(player['lvlNext'] * 1.5)
+        nStr += 1
+        nDef += 1
+        nDex += 1
+        nInt += 1
+
+    print('level:', player['lvl']) # current level
+    print('STR {} +{} DEF {} +{} DEX {} +{} INT {} +{}'.format(stats['Str'], nStr,
+                                                               stats['Def'], nDef,
+                                                               stats['Dex'], nDex,
+                                                               stats['Int'], nInt))
+    print('To next level: {}%'.format(int(player['xp'] / player['lvlNext']) * 100)) # prints percentage to next level
+    print('Next:', player['lvlNext']) 
+    stats['Str'] += nStr
+    stats['Def'] += nDef
+    stats['Dex'] += nDex
+    stats['Int'] += nInt
+
+# Input response function 
 
 def valid_input(prompt, option1, option2):
     while True:
@@ -17,6 +59,8 @@ def valid_input(prompt, option1, option2):
         else:
             print_pause("Sorry I don't understand")
     return response
+
+
 
 
 def play_game():
@@ -54,6 +98,8 @@ def intro():
     "we also don't know how everyone is arriving.")
     dialog("Me: so how do people survive and make a living here?")
     dialog("Ted explains the three hero paths.")
+
+# Ruskett Valley Functions
 
 def ruskett_valley(items): 
     print_pause("Welcome to ruskett.")
@@ -109,6 +155,7 @@ def ruskett_training(itmes):
 def traveller_registraton(items):
     print_pause("Welcome")
 
+# Oak City Functions 
 
 def oak_city(items): 
     print_pause("welcome to Oak City!")
@@ -139,6 +186,8 @@ def second_cave(items):
                 exit_cave(items)
         elif "exit cave" in response:
             exit_cave(items)
+
+# Magnolia Functions
 
 def magnolia_village(items):
     print_pause("Welcome to Magnolia Village.")
@@ -171,8 +220,12 @@ def third_cave(items):
         elif "exit cave" in response:
             exit_cave(items)
 
+# Dogwood Functions
+
 def dogwood_village(items): 
     print_pause("Welcome to Dogwood Village.")
+
+# Tamarack Functions
 
 def tamarack_city(items): 
     print_pause("Welcome to Tamarack City")
@@ -196,6 +249,8 @@ def first_cave(items):
             exit_cave(items)
         elif "exit cave" in response:
             exit_cave(items)
+
+# Redwood Functions
 
 def redwood_city(items):
     print_pause("Welcome to Redwood City.")
@@ -323,40 +378,5 @@ def you_lose():
 
 play_game()
 
-# xp leveling 
 
-player = {
-    'lvl': 1,
-    'xp': 0,
-    'lvlNext': 25
-}
 
-stats = {
-    'Str': 0,
-    'Def': 0,
-    'Dex': 0,
-    'Int': 0
-}
-
-def level(player, stats):
-    nStr, nDef, nDex, nInt = 0, 0, 0, 0
-    while player['xp'] >= player['lvlNext']:
-        player['lvl'] += 1
-        player['xp'] = player['xp'] - player['lvlNext']
-        player['lvlNext'] = round(player['lvlNext'] * 1.5)
-        nStr += 1
-        nDef += 1
-        nDex += 1
-        nInt += 1
-
-    print('level:', player['lvl']) # current level
-    print('STR {} +{} DEF {} +{} DEX {} +{} INT {} +{}'.format(stats['Str'], nStr,
-                                                               stats['Def'], nDef,
-                                                               stats['Dex'], nDex,
-                                                               stats['Int'], nInt))
-    print('To next level: {}%'.format(int(player['xp'] / player['lvlNext']) * 100)) # prints percentage to next level
-    print('Next:', player['lvlNext']) 
-    stats['Str'] += nStr
-    stats['Def'] += nDef
-    stats['Dex'] += nDex
-    stats['Int'] += nInt
