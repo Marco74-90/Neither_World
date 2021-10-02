@@ -211,7 +211,7 @@ def fourth_cave(items):
     elif "approach" in response:
         print_pause("The shifter turns into a " + enemy + "!")
         print_pause("You must fight your way through.")
-        fight(items)
+        # fight(items)
     else:
         print_pause("Sorry I don't understand")
         return response
@@ -227,73 +227,73 @@ def fourth_cave(items):
 
 
 
-def fight(items):
-    if 'medallion' in items:
-        print_pause("The items you found in the caves begin to glow")
-        fight_path()
-    else:
-        print_pause("You are not strong enough to fight.")
-        exit_cave(items)
+# def fight(items):
+#     if 'medallion' in items:
+#         print_pause("The items you found in the caves begin to glow")
+#         fight_path()
+#     else:
+#         print_pause("You are not strong enough to fight.")
+#         exit_cave(items)
 
 
-def fight_path():
-    print_pause("What will you do? Please enter a number:")
-    choice = input("1.Touch the medallion\n"
-                   "2.Grab the dagger\n"
-                   "3.Ready your armor\n")
-    if choice == '1':
-        print_pause("Your medallion  emits a bright green light.")
-        print_pause("The light Blinds your foe!")
-        print_pause("What will you do next? Please enter a number")
-        choice2 = input("1.Ready your armor\n"
-                        "2.Grab the dagger\n")
-        if choice2 == '1':
-            print_pause("your armor shifts slightly as if bracing itself.")
-            print_pause("the dagger glows and becomes a broadsword.")
-            print_pause("The magic from your medallion and armor swirl "
-                        " around infusing with your sword.")
-            print_pause("While your foe is blinded you attack!")
-            print_pause("With a few swift strikes you defeat your enemy.")
-            print_pause("The door behind him opens revealing a path "
-                        "to you bedroom.")
-            you_win()
-        elif choice2 == '2':
-            print_pause("the dagger glows but does nothing.")
-            print_pause("Your opponent laughs as he charges toward you.")
-            you_lose()
-        else:
-            print_pause("Sorry I dont understand.")
-            return choice2
-    elif choice == '2':
-        print_pause("The dagger glows but does nothing")
-        print_pause("Your opponent laughs as he charges toward you.")
-        you_lose()
-    elif choice == '3':
-        print_pause("Your armor shifts slightly as if bracing itself.")
-        print_pause("Your opponent attacks but get gets knocked back.")
-        print_pause("What will you do next? Please enter a number:")
-        choice3 = input("1.Touch the medallion\n"
-                        "2.Grab the dagger\n")
-        if choice3 == '1':
-            print_pause("Your medallion  emits a bright green light.")
-            print_pause("The light Blinds your foe!")
-            print_pause("the dagger glows and becomes a broadsword.")
-            print_pause("The magic from your medallion and armor swirl "
-                        " around infusing with your sword.")
-            print_pause("While your foe is blinded you attack!")
-            print_pause("With a few swift strikes you defeat your enemy.")
-            print_pause("The door behind him opens revealing a path "
-                        "to you bedroom.")
-            you_win()
-        elif choice3 == '2':
-            print_pause("The dagger glows but does nothing")
-            print_pause("Your opponent laughs as he charges toward you.")
-            you_lose()
-        else:
-            print_pause("Sorry I dont Understand")
-            return choice3
-    else:
-        return choice
+# def fight_path():
+#     print_pause("What will you do? Please enter a number:")
+#     choice = input("1.Touch the medallion\n"
+#                    "2.Grab the dagger\n"
+#                    "3.Ready your armor\n")
+#     if choice == '1':
+#         print_pause("Your medallion  emits a bright green light.")
+#         print_pause("The light Blinds your foe!")
+#         print_pause("What will you do next? Please enter a number")
+#         choice2 = input("1.Ready your armor\n"
+#                         "2.Grab the dagger\n")
+#         if choice2 == '1':
+#             print_pause("your armor shifts slightly as if bracing itself.")
+#             print_pause("the dagger glows and becomes a broadsword.")
+#             print_pause("The magic from your medallion and armor swirl "
+#                         " around infusing with your sword.")
+#             print_pause("While your foe is blinded you attack!")
+#             print_pause("With a few swift strikes you defeat your enemy.")
+#             print_pause("The door behind him opens revealing a path "
+#                         "to you bedroom.")
+#             you_win()
+#         elif choice2 == '2':
+#             print_pause("the dagger glows but does nothing.")
+#             print_pause("Your opponent laughs as he charges toward you.")
+#             you_lose()
+#         else:
+#             print_pause("Sorry I don't understand.")
+#             return choice2
+#     elif choice == '2':
+#         print_pause("The dagger glows but does nothing")
+#         print_pause("Your opponent laughs as he charges toward you.")
+#         you_lose()
+#     elif choice == '3':
+#         print_pause("Your armor shifts slightly as if bracing itself.")
+#         print_pause("Your opponent attacks but get gets knocked back.")
+#         print_pause("What will you do next? Please enter a number:")
+#         choice3 = input("1.Touch the medallion\n"
+#                         "2.Grab the dagger\n")
+#         if choice3 == '1':
+#             print_pause("Your medallion  emits a bright green light.")
+#             print_pause("The light Blinds your foe!")
+#             print_pause("the dagger glows and becomes a broadsword.")
+#             print_pause("The magic from your medallion and armor swirl "
+#                         " around infusing with your sword.")
+#             print_pause("While your foe is blinded you attack!")
+#             print_pause("With a few swift strikes you defeat your enemy.")
+#             print_pause("The door behind him opens revealing a path "
+#                         "to you bedroom.")
+#             you_win()
+#         elif choice3 == '2':
+#             print_pause("The dagger glows but does nothing")
+#             print_pause("Your opponent laughs as he charges toward you.")
+#             you_lose()
+#         else:
+#             print_pause("Sorry I don't understand")
+#             return choice3
+#     else:
+#         return choice
 
 
 
@@ -322,3 +322,18 @@ def you_lose():
 
 
 play_game()
+
+# xp leveling 
+
+lvl = 1
+xp = 0
+lvlNext = 25
+
+while lvl >= lvlNext:
+    lvl += 1
+    xp = xp - lvlNext
+    lvlNext = round(lvlNext * 1.5)
+print('lvl:',lvl)
+print('To next level: {}%'.format(int((xp / lvlNext) * 100)))
+print('Next:', lvlNext)
+
