@@ -1,6 +1,7 @@
 import time
 import random
 
+
 # player info
 player = {
     'name': 'Hero',
@@ -30,13 +31,14 @@ enemy = {
     'name': randomEnemy,
     'lvl': 1,
     'xp': 0,
+    'reward': 25,
     'lvlNext': 25,
     'stats': {
         'Str': 1,
         'Def': 1,
         'Dex': 1,
         'Int': 1,
-        'Hp': 50, # Add more reasonable Hp Max Hp should increase with level
+        'Hp': 50, #  Max Hp should increase with level
         "Atk": [5, 12], #Attack should also increase with level
     }
 }
@@ -55,16 +57,16 @@ def level(player):
         nInt += 1
 
     print('level:', player['lvl']) # current level
-    print('STR {} +{} DEF {} +{} DEX {} +{} INT {} +{}'.format(player['Str'], nStr,
-                                                               player['Def'], nDef,
-                                                               player['Dex'], nDex,
-                                                               player['Int'], nInt))
+    print('STR {} +{} DEF {} +{} DEX {} +{} INT {} +{}'.format(player['stats']['Str'], nStr,
+                                                               player['stats']['Def'], nDef,
+                                                               player['stats']['Dex'], nDex,
+                                                               player['stats']['Int'], nInt))
     print('To next level: {}%'.format(int(player['xp'] / player['lvlNext']) * 100)) # prints percentage to next level
     print('Next:', player['lvlNext']) 
-    player['Str'] += nStr
-    player['Def'] += nDef
-    player['Dex'] += nDex
-    player['Int'] += nInt
+    player['stats']['Str'] += nStr
+    player['stats']['Def'] += nDef
+    player['stats']['Dex'] += nDex
+    player['stats']['Int'] += nInt
 
 # Input response function 
 
@@ -88,7 +90,6 @@ def play_game():
     intro()
     ruskett_valley(items, player)
 
-
 def print_pause(message):
     print(message)
     time.sleep(2)
@@ -102,6 +103,9 @@ def exit_cave(items):
 
 def enter():
     print_pause("You enter the cave.")
+
+def exit():
+    print("return to over world")# build overworld function 
 
 def intro():
     print_pause("You wake in a forest with no memory of where you are or how you got there.")
@@ -293,10 +297,29 @@ def fourth_cave(items):
 
 #Fight
 
-# def takeDmg(attacker, defender):
+def takeDmg(attacker, defender):
+    dmg = random.randint(attacker['stats']['Atk'][0], attacker['stats']['Atk'][1])
+    defender['stats']['maxHp'] = defender['stats']['maxHp'] - dmg
+    if defender['stats']['maxHp'] <= 0:
+        print('{} has been slain'.format(defender['name']))
+        player['xp'] = enemy['reward']
+        level(player)
+        exit() # exits the encounter once enemy is defeated
+    else: 
+        print('{} takes {} damage!'.format(defender['name'], dmg))
 
 
-
+def commands(player, enemy): # add defense option 
+    while True:
+        print('--------------------')
+        response = input('Do you want to attack? yes/no; ').lower()
+        if 'yes' in response:
+            takeDmg(player, enemy)
+        elif 'no' in response:
+            print('{} takes the opportunity to attack!').format(enemy['name'])
+            takeDmg(enemy, player)
+        else:
+            pass
 
 
 
