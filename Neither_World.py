@@ -321,12 +321,6 @@ def commands(player, enemy): # add defense option
         else:
             pass
 
-
-
-
-
-
-
 # def fight(items):
 #     if 'medallion' in items:
 #         print_pause("The items you found in the caves begin to glow")
