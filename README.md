@@ -1,5 +1,5 @@
 # Neither World
-Neither World is a text based rpg adventure game 
+Neither World is a text based adventure RPG.
 
 # Instructions
 1. Fork this repository and navigate to the folder in the terminal.
